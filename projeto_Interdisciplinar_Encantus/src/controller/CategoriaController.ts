@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { CategoriaService } from "../service/CategoriaService";
 import { Route, Tags, Post, Body, Res, TsoaResponse, Controller} from "tsoa";
 import { LivroService } from "../service/LivroService";
-import { LivroRequestDto } from "../model/dto/ProductRequestDto";
+import { LivroRequestDto } from "../model/dto/ClienteRequestDto";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
 
 const categoriaService = new CategoriaService();

@@ -1,3 +1,4 @@
 # web_01_2024
 Projeto II
-atualizacao v0.1: adicionado o basico do MVC, menos para entidade Pessoa.
+atualizacao v0.1: adicionado o basico do MVC.
+atualizacao v0.2: cliente swagger cadastrar.

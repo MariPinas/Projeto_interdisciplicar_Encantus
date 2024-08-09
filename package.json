@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "swagger-ui-express": "^5.0.1",
+    "tsoa": "^6.4.0"
+  }
+}

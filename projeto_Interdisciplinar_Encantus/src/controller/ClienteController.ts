@@ -1,22 +1,29 @@
-import { Request, Response } from "express";
+import { Body, Controller, Post, Res, Route, Tags, TsoaResponse } from "tsoa";
 import { ClienteService } from "../service/ClienteService";
+import { ClienteRequestDto } from "../model/dto/ClienteRequestDto";
+import { BasicResponseDto } from "../model/dto/BasicResponseDto";
 
-const clienteService = new ClienteService();
 
-export async function cadastrarCliente (req: Request, res: Response){
+@Route("cliente")
+@Tags("Cliente")
+export class ClienteController extends Controller{
+    clienteService = new ClienteService();
+
+@Post()
+  async cadastrarCliente (
+    @Body() dto: ClienteRequestDto,
+    @Res() fail: TsoaResponse<400, BasicResponseDto>,
+    @Res() sucess: TsoaResponse<201, BasicResponseDto> 
+
+):Promise<void>{
     try {
-        const novoCliente = await clienteService.cadastrarCliente(req.body);
-        res.status(201).json(
-            {
-                mensagem:"Cliente adicionado com sucesso!",
-                cliente:novoCliente
-            }
-        );
+        const novoCliente = await this.clienteService.cadastrarCliente(dto);
+        return sucess(201, new BasicResponseDto("Produto criado com sucesso", novoCliente));
     } catch (error: any) {
-        res.status(400).json({ message: error.message});
+        return fail(400, new BasicResponseDto(error.message, undefined))
     }
 };
-
+/*
 export async function atualizarCliente (req: Request, res: Response){
     try {
         const cliente = await clienteService.atualizarCliente(req.body);
@@ -72,3 +79,5 @@ export async function listarTodosClientes (req: Request, res: Response){
         res.status(400).json({ message: error.message});
     }
 };
+*/
+}
