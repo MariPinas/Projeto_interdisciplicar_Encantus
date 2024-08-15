@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Res, Route, Tags, TsoaResponse, Put, Delete, Get, Query } from "tsoa";
+import { Body, Controller, Post, Res, Route, Tags, TsoaResponse, Put, Delete, Get, Path } from "tsoa";
 import { ClienteService } from "../service/ClienteService";
 import { ClienteRequestDto } from "../model/dto/ClienteRequestDto";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
@@ -52,9 +52,9 @@ export class ClienteController extends Controller {
         }
     };
 
-    @Get()
+    @Get("id/{id}")
     async filtrarCliente(
-        @Query() id: number,
+        @Path() id: number,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<201, BasicResponseDto>
     ): Promise<void> {
@@ -66,7 +66,7 @@ export class ClienteController extends Controller {
         }
     };
 
-    @Get()
+    @Get("all")
     async listarTodosCliente(
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<201, BasicResponseDto>

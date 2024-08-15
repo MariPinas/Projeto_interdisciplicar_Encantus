@@ -1,5 +1,5 @@
 import { ContratoService } from "../service/ContratoService";
-import { Body, Controller, Post, Res, Route, Tags, TsoaResponse, Put, Delete, Get, Query } from "tsoa";
+import { Body, Controller, Post, Res, Route, Tags, TsoaResponse, Put, Delete, Get, Path } from "tsoa";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
 import { ContratoRequestsDto } from "../model/dto/ContatoRequestsDto";
 
@@ -23,7 +23,7 @@ export class ContratoController extends Controller {
     };
 
     @Put()
-    async atualizarCliente(
+    async atualizarContrato(
         @Body() dto: ContratoRequestsDto,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<201, BasicResponseDto>
@@ -38,7 +38,7 @@ export class ContratoController extends Controller {
 
 
     @Delete()
-    async deletarCliente(
+    async deletarContrato(
         @Body() dto: ContratoRequestsDto,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<201, BasicResponseDto>
@@ -52,9 +52,9 @@ export class ContratoController extends Controller {
     };
 
 
-    @Get()
-    async filtrarCliente(
-        @Query() id: number,
+    @Get("id/{id}")
+    async filtrarContrato(
+        @Path() id: number,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<201, BasicResponseDto>
     ): Promise<void> {
@@ -67,14 +67,14 @@ export class ContratoController extends Controller {
     };
 
 
-    @Get()
+    @Get("all")
     async listarTodosContratos(
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<201, BasicResponseDto>
     ): Promise<void> {
         try {
-            const novoCliente = await this.contratoService.listarTodosContratos();
-            return sucess(201, new BasicResponseDto("Contratos listados com sucesso", novoCliente));
+            const novoContrato = await this.contratoService.listarTodosContratos();
+            return sucess(201, new BasicResponseDto("Contratos listados com sucesso", novoContrato));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined))
         }

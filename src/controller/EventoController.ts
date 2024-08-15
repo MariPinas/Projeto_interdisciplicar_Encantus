@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Res, Route, Tags, TsoaResponse, Put, Delete, Get, Query } from "tsoa";
+import { Body, Controller, Post, Res, Route, Tags, TsoaResponse, Put, Delete, Get, Path } from "tsoa";
 import { EventoService } from "../service/EventoService";
 import { EventoRequestsDto } from "../model/dto/EventoRequestsDto";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
@@ -38,7 +38,7 @@ export class EventoController extends Controller {
 
 
     @Delete()
-    async deletarCliente(
+    async deletarEvento(
         @Body() dto: EventoRequestsDto,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<201, BasicResponseDto>
@@ -52,9 +52,9 @@ export class EventoController extends Controller {
     };
 
 
-    @Get()
-    async filtrarCliente(
-        @Query() id: number,
+    @Get("id/{id}")
+    async filtrarEvento(
+        @Path() id: number,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<201, BasicResponseDto>
     ): Promise<void> {
@@ -67,7 +67,7 @@ export class EventoController extends Controller {
     };
 
 
-    @Get()
+    @Get("all")
     async listarTodosEventos(
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<201, BasicResponseDto>
