@@ -1,8 +1,8 @@
 import { executarComandoSQL } from "../database/mysql";
-import { Categoria } from "../model/Evento";
+import { Evento } from "../model/Evento";
 
 
-export class CategoriaRepository{
+export class EventoRepository{
 
     constructor(){
         this.createTable();
@@ -22,7 +22,7 @@ export class CategoriaRepository{
             console.error('Error');
         }
     }
-
+    /*
     async insertCategoria(categoria:Categoria) :Promise<Categoria>{
         const query = "INSERT INTO biblioteca.Categoria (nome) VALUES (?)" ;
 
@@ -98,5 +98,5 @@ export class CategoriaRepository{
         }
     }
 
-    
+    */
 }

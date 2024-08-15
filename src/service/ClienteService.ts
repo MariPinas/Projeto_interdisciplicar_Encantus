@@ -2,7 +2,7 @@ import { Cliente } from "../model/Cliente";
 import { ClienteRepository } from "../repository/ClienteRepository";
 
 export class ClienteService{
-
+    /*
     clienteRepository: ClienteRepository = new ClienteRepository(); //
 
     async cadastrarCliente(clienteData: any): Promise<Cliente> {
@@ -48,5 +48,5 @@ export class ClienteService{
         console.log("Service - Filtrar Todos", cliente);
         return cliente;
     }
-
+    */
 }

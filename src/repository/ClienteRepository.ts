@@ -26,7 +26,7 @@ export class ClienteRepository{
             console.error('Error');
         }
     }
-
+    /*
     async insertCliente(cliente:Cliente) :Promise<Cliente>{
         const query = "INSERT INTO biblioteca.Cliente (nome, email, endereco, telefone, cpf) VALUES (?, ?, ?, ?, ?)" ;
 
@@ -101,6 +101,6 @@ export class ClienteRepository{
             throw err;
         }
     }
-
+    */
     
 }

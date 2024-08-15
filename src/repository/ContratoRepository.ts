@@ -1,8 +1,8 @@
 import { executarComandoSQL } from "../database/mysql";
-import { Livro } from "../model/Contrato";
+import { Contrato } from "../model/Contrato";
 
 
-export class LivroRepository{
+export class ContratoRepository{
 
     constructor(){
         this.createTable();
@@ -26,7 +26,7 @@ export class LivroRepository{
             console.error('Error');
         }
     }
-
+    /*
     async insertLivro(livro:Livro) :Promise<Livro>{
         const query = "INSERT INTO biblioteca.Livro (titulo, autor, categoriaID) VALUES (?, ?, ?)" ;
 
@@ -101,6 +101,6 @@ export class LivroRepository{
             throw err;
         }
     }
-
+    */
     
 }

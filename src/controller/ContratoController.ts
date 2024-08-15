@@ -1,6 +1,11 @@
 import { Request, Response } from "express";
-import { LivroService } from "../service/LivroService";
+import { ContratoService } from "../service/ContratoService";
+import { Route, Tags, Post, Body, Res, TsoaResponse, Controller} from "tsoa";
+import { BasicResponseDto } from "../model/dto/BasicResponseDto";
+import { ContratoRequestsDto } from "../model/dto/ContatoRequestsDto";
 
+
+/*
 const livroService = new LivroService();
 
 export async function cadastrarLivro (req: Request, res: Response){
@@ -72,3 +77,4 @@ export async function listarTodosLivro (req: Request, res: Response){
         res.status(400).json({ message: error.message});
     }
 };
+*/

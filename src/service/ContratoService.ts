@@ -1,8 +1,8 @@
-import { Livro } from "../model/Contrato";
-import { LivroRepository } from "../repository/LivroRepository";
+import { Contrato } from "../model/Contrato";
+import { ContratoRepository } from "../repository/ContratoRepository";
 
-export class LivroService{
-
+export class ContratoService{
+    /*
     livroRepository: LivroRepository = new LivroRepository(); //
 
     async cadastrarLivro(livroData: any): Promise<Livro> {
@@ -48,5 +48,5 @@ export class LivroService{
         console.log("Service - Filtrar Todos", livro);
         return livro;
     }
-
+    */
 }

@@ -1,8 +1,9 @@
-import { Categoria } from "../model/Evento";
-import { CategoriaRepository } from "../repository/CategoriaRepository";
+import { Evento } from "../model/Evento";
+import { EventoRepository } from "../repository/EventoRepository";
 
-export class CategoriaService{
+export class EventoService{
 
+    /*
     categoriaRepository: CategoriaRepository = new CategoriaRepository(); //
 
     async cadastrarCategoria(categoriaData: any): Promise<Categoria> {
@@ -47,6 +48,7 @@ export class CategoriaService{
         const categoria =  await this.categoriaRepository.filterAllCategoria();
         console.log("Service - Filtrar Todos", categoria);
         return categoria;
-    }
+    }   
+    */
 
 }
