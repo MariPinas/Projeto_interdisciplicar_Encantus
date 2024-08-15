@@ -1,4 +1,4 @@
-import { Categoria } from "../model/Categoria";
+import { Categoria } from "../model/Evento";
 import { CategoriaRepository } from "../repository/CategoriaRepository";
 
 export class CategoriaService{

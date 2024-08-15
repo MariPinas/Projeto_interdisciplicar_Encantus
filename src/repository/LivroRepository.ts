@@ -1,5 +1,5 @@
 import { executarComandoSQL } from "../database/mysql";
-import { Livro } from "../model/Livro";
+import { Livro } from "../model/Contrato";
 
 
 export class LivroRepository{

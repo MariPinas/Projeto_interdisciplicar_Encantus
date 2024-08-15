@@ -1,5 +1,5 @@
 import { executarComandoSQL } from "../database/mysql";
-import { Categoria } from "../model/Categoria";
+import { Categoria } from "../model/Evento";
 
 
 export class CategoriaRepository{

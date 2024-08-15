@@ -1,4 +1,4 @@
-import { Livro } from "../model/Livro";
+import { Livro } from "../model/Contrato";
 import { LivroRepository } from "../repository/LivroRepository";
 
 export class LivroService{
