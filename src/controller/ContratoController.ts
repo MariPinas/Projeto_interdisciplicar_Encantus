@@ -1,80 +1,82 @@
-import { Request, Response } from "express";
 import { ContratoService } from "../service/ContratoService";
-import { Route, Tags, Post, Body, Res, TsoaResponse, Controller} from "tsoa";
+import { Body, Controller, Post, Res, Route, Tags, TsoaResponse, Put, Delete, Get, Query } from "tsoa";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
 import { ContratoRequestsDto } from "../model/dto/ContatoRequestsDto";
 
+@Route("contrato")
+@Tags("Contrato")
+export class ContratoController extends Controller {
+    contratoService = new ContratoService();
 
-/*
-const livroService = new LivroService();
+    @Post()
+    async inserirContrato(
+        @Body() dto: ContratoRequestsDto,
+        @Res() fail: TsoaResponse<400, BasicResponseDto>,
+        @Res() sucess: TsoaResponse<201, BasicResponseDto>
+    ): Promise<void> {
+        try {
+            const novoContrato = await this.contratoService.inserirContrato(dto);
+            return sucess(201, new BasicResponseDto("Contrato criado com sucesso", novoContrato));
+        } catch (error: any) {
+            return fail(400, new BasicResponseDto(error.message, undefined))
+        }
+    };
 
-export async function cadastrarLivro (req: Request, res: Response){
-    try {
-        const novoLivro = await livroService.cadastrarLivro(req.body);
-        res.status(201).json(
-            {
-                mensagem:"Livro adicionado com sucesso!",
-                livro:novoLivro
-            }
-        );
-    } catch (error: any) {
-        res.status(400).json({ message: error.message});
-    }
-};
+    @Put()
+    async atualizarCliente(
+        @Body() dto: ContratoRequestsDto,
+        @Res() fail: TsoaResponse<400, BasicResponseDto>,
+        @Res() sucess: TsoaResponse<201, BasicResponseDto>
+    ): Promise<void> {
+        try {
+            const novoContrato = await this.contratoService.atualizarContrato(dto);
+            return sucess(201, new BasicResponseDto("Contrato atualizado com sucesso", novoContrato));
+        } catch (error: any) {
+            return fail(400, new BasicResponseDto(error.message, undefined))
+        }
+    };
 
-export async function atualizarLivro (req: Request, res: Response){
-    try {
-        const livro = await livroService.atualizarLivro(req.body);
-        res.status(200).json(
-            {
-                mensagem:"Livro atualizado com sucesso!",
-                livro:livro
-            }
-        );
-    } catch (error: any) {
-        res.status(400).json({ message: error.message});
-    }
-};
 
-export async function deletarLivro (req: Request, res: Response){
-    try {
-        const livro = await livroService.deletarLivro(req.body);
-        res.status(200).json(
-            {
-                mensagem:"Livro deletado com sucesso!",
-                livro:livro
-            }
-        );
-    } catch (error: any) {
-        res.status(400).json({ message: error.message});
-    }
-};
+    @Delete()
+    async deletarCliente(
+        @Body() dto: ContratoRequestsDto,
+        @Res() fail: TsoaResponse<400, BasicResponseDto>,
+        @Res() sucess: TsoaResponse<201, BasicResponseDto>
+    ): Promise<void> {
+        try {
+            const novoContrato = await this.contratoService.deletarContrato(dto);
+            return sucess(201, new BasicResponseDto("Contrato deletado com sucesso", novoContrato));
+        } catch (error: any) {
+            return fail(400, new BasicResponseDto(error.message, undefined))
+        }
+    };
 
-export async function filtrarLivro (req: Request, res: Response){
-    try {
-        const livro = await livroService.filtrarLivro(req.query.id);
-        res.status(200).json(
-            {
-                mensagem:"Livro encontrado com sucesso!",
-                livro:livro
-            }
-        );
-    } catch (error: any) {
-        res.status(400).json({ message: error.message});
-    }
-};
 
-export async function listarTodosLivro (req: Request, res: Response){
-    try {
-        const livros = await livroService.listarTodosLivros();
-        res.status(200).json(
-            {
-                mensagem:"Livros listados com sucesso!",
-                livros:livros
-            }
-            );
-    } catch (error: any) {
-        res.status(400).json({ message: error.message});
-    }
-};
-*/
+    @Get()
+    async filtrarCliente(
+        @Query() id: number,
+        @Res() fail: TsoaResponse<400, BasicResponseDto>,
+        @Res() sucess: TsoaResponse<201, BasicResponseDto>
+    ): Promise<void> {
+        try {
+            const novoContrato = await this.contratoService.filtrarContrato(id);
+            return sucess(201, new BasicResponseDto("Contrato encontrado com sucesso", novoContrato));
+        } catch (error: any) {
+            return fail(400, new BasicResponseDto(error.message, undefined))
+        }
+    };
+
+
+    @Get()
+    async listarTodosContratos(
+        @Res() fail: TsoaResponse<400, BasicResponseDto>,
+        @Res() sucess: TsoaResponse<201, BasicResponseDto>
+    ): Promise<void> {
+        try {
+            const novoCliente = await this.contratoService.listarTodosContratos();
+            return sucess(201, new BasicResponseDto("Contratos listados com sucesso", novoCliente));
+        } catch (error: any) {
+            return fail(400, new BasicResponseDto(error.message, undefined))
+        }
+    };
+}

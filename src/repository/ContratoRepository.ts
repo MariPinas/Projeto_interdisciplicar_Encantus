@@ -1,10 +1,10 @@
 import { executarComandoSQL } from "../database/mysql";
-import { Contrato } from "../model/Contrato";
+import { Contrato } from "../model/entity/Contrato";
 
 
-export class ContratoRepository{
+export class ContratoRepository {
 
-    constructor(){
+    constructor() {
         this.createTable();
     }
 
@@ -20,8 +20,8 @@ export class ContratoRepository{
         )`;
 
         try {
-                const resultado =  await executarComandoSQL(query, []);
-                console.log('Query executada com sucesso:', resultado);
+            const resultado = await executarComandoSQL(query, []);
+            console.log('Query executada com sucesso:', resultado);
         } catch (err) {
             console.error('Error');
         }
@@ -102,5 +102,5 @@ export class ContratoRepository{
         }
     }
     */
-    
+
 }

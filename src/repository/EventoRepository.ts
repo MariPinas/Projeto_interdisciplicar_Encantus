@@ -1,10 +1,10 @@
 import { executarComandoSQL } from "../database/mysql";
-import { Evento } from "../model/Evento";
+import { Evento } from "../model/entity/Evento";
 
 
-export class EventoRepository{
+export class EventoRepository {
 
-    constructor(){
+    constructor() {
         this.createTable();
     }
 
@@ -16,8 +16,8 @@ export class EventoRepository{
         )`;
 
         try {
-                const resultado =  await executarComandoSQL(query, []);
-                console.log('Query executada com sucesso:', resultado);
+            const resultado = await executarComandoSQL(query, []);
+            console.log('Query executada com sucesso:', resultado);
         } catch (err) {
             console.error('Error');
         }

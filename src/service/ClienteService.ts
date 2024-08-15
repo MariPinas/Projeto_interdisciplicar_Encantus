@@ -1,7 +1,7 @@
-import { Cliente } from "../model/Cliente";
+import { Cliente } from "../model/entity/Cliente";
 import { ClienteRepository } from "../repository/ClienteRepository";
 
-export class ClienteService{
+export class ClienteService {
     /*
     clienteRepository: ClienteRepository = new ClienteRepository(); //
 

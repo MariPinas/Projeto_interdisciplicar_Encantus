@@ -1,7 +1,7 @@
-import { Contrato } from "../model/Contrato";
+import { Contrato } from "../model/entity/Contrato";
 import { ContratoRepository } from "../repository/ContratoRepository";
 
-export class ContratoService{
+export class ContratoService {
     /*
     livroRepository: LivroRepository = new LivroRepository(); //
 

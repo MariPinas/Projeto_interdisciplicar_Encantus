@@ -1,7 +1,7 @@
-import { Evento } from "../model/Evento";
+import { Evento } from "../model/entity/Evento";
 import { EventoRepository } from "../repository/EventoRepository";
 
-export class EventoService{
+export class EventoService {
 
     /*
     categoriaRepository: CategoriaRepository = new CategoriaRepository(); //

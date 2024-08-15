@@ -1,102 +1,82 @@
-import { Request, Response } from "express";
-import { Route, Tags, Post, Body, Res, TsoaResponse, Controller} from "tsoa";
+import { Body, Controller, Post, Res, Route, Tags, TsoaResponse, Put, Delete, Get, Query } from "tsoa";
 import { EventoService } from "../service/EventoService";
 import { EventoRequestsDto } from "../model/dto/EventoRequestsDto";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
 
-/*
-const categoriaService = new CategoriaService();
+@Route("evento")
+@Tags("Evento")
+export class EventoController extends Controller {
+    eventoService = new EventoService();
 
-
-@Route("categoria")
-@Tags("Categoria")
-export class CategoriaController extends Controller{
-    productService = new CategoriaService () ;
-
-    @Post() 
-    async cadastrarCategoria (
-        @Body() dto:LivroRequestDto,
-        @Res() fail:TsoaResponse <400,BasicResponseDto>,
-        @Res() success:TsoaResponse <201,BasicResponseDto>
-    ):Promise<void>{
+    @Post()
+    async inserirEvento(
+        @Body() dto: EventoRequestsDto,
+        @Res() fail: TsoaResponse<400, BasicResponseDto>,
+        @Res() sucess: TsoaResponse<201, BasicResponseDto>
+    ): Promise<void> {
         try {
-            const novaCategoria = await categoriaService.cadastrarCategoria(dto);
-            return success(201,new BasicResponseDto("Categoria adicionada com sucesso!",novaCategoria));
-        } catch (error:any){
-        return fail(400, new BasicResponseDto(error.message,undefined));
-        }
-    }
-
-    async cadastrarCategoria2 (req: Request, res: Response){
-        try {
-            const novaCategoria = await categoriaService.cadastrarCategoria(req.body);
-            res.status(201).json(
-                {
-                    mensagem:"Categoria adicionada com sucesso!",
-                    categoria:novaCategoria
-                }
-            );
+            const novoEvento = await this.eventoService.inserirEVento(dto);
+            return sucess(201, new BasicResponseDto("Evento criado com sucesso", novoEvento));
         } catch (error: any) {
-            res.status(400).json({ message: error.message});
+            return fail(400, new BasicResponseDto(error.message, undefined))
+        }
+    };
+
+    @Put()
+    async atualizarEvento(
+        @Body() dto: EventoRequestsDto,
+        @Res() fail: TsoaResponse<400, BasicResponseDto>,
+        @Res() sucess: TsoaResponse<201, BasicResponseDto>
+    ): Promise<void> {
+        try {
+            const novoEvento = await this.eventoService.atualizarEvento(dto);
+            return sucess(201, new BasicResponseDto("Evento atualizado com sucesso", novoEvento));
+        } catch (error: any) {
+            return fail(400, new BasicResponseDto(error.message, undefined))
+        }
+    };
+
+
+    @Delete()
+    async deletarCliente(
+        @Body() dto: EventoRequestsDto,
+        @Res() fail: TsoaResponse<400, BasicResponseDto>,
+        @Res() sucess: TsoaResponse<201, BasicResponseDto>
+    ): Promise<void> {
+        try {
+            const novoEvento = await this.eventoService.deletarEvento(dto);
+            return sucess(201, new BasicResponseDto("Evento deletado com sucesso", novoEvento));
+        } catch (error: any) {
+            return fail(400, new BasicResponseDto(error.message, undefined))
+        }
+    };
+
+
+    @Get()
+    async filtrarCliente(
+        @Query() id: number,
+        @Res() fail: TsoaResponse<400, BasicResponseDto>,
+        @Res() sucess: TsoaResponse<201, BasicResponseDto>
+    ): Promise<void> {
+        try {
+            const novoEvento = await this.eventoService.filtrarEvento(id);
+            return sucess(201, new BasicResponseDto("Evento encontrado com sucesso", novoEvento));
+        } catch (error: any) {
+            return fail(400, new BasicResponseDto(error.message, undefined))
+        }
+    };
+
+
+    @Get()
+    async listarTodosEventos(
+        @Res() fail: TsoaResponse<400, BasicResponseDto>,
+        @Res() sucess: TsoaResponse<201, BasicResponseDto>
+    ): Promise<void> {
+        try {
+            const novoEvento = await this.eventoService.listarTodosEventos();
+            return sucess(201, new BasicResponseDto("Eventos listados com sucesso", novoEvento));
+        } catch (error: any) {
+            return fail(400, new BasicResponseDto(error.message, undefined))
         }
     };
 }
-
-
-
-
-/*export async function atualizarCategoria (req: Request, res: Response){
-    try {
-        const categoria = await categoriaService.atualizarCategoria(req.body);
-        res.status(200).json(
-            {
-                mensagem:"Categoria atualizada com sucesso!",
-                categoria:categoria
-            }
-        );
-    } catch (error: any) {
-        res.status(400).json({ message: error.message});
-    }
-};
-
-export async function deletarCategoria (req: Request, res: Response){
-    try {
-        const categoria = await categoriaService.deletarCategoria(req.body);
-        res.status(200).json(
-            {
-                mensagem:"Categoria deletada com sucesso!",
-                categoria:categoria
-            }
-        );
-    } catch (error: any) {
-        res.status(400).json({ message: error.message});
-    }
-};
-
-export async function filtrarCategoria (req: Request, res: Response){
-    try {
-        const categoria = await categoriaService.filtrarCategoria(req.query.id);
-        res.status(200).json(
-            {
-                mensagem:"Categoria encontrada com sucesso!",
-                categoria:categoria
-            }
-        );
-    } catch (error: any) {
-        res.status(400).json({ message: error.message});
-    }
-};
-
-export async function listarTodasCategorias (req: Request, res: Response){
-    try {
-        const categorias = await categoriaService.listarTodasCategorias();
-        res.status(200).json(
-            {
-                mensagem:"Categorias listadas com sucesso!",
-                categorias:categorias
-            }
-            );
-    } catch (error: any) {
-        res.status(400).json({ message: error.message});
-    }
-};*/
