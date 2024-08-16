@@ -23,8 +23,8 @@ export class ContratoRepository {
             id INT AUTO_INCREMENT PRIMARY KEY,
             idCliente INT NOT NULL,
             idEvento INT NOT NULL,
-            nomeCliente, VARCHAR(255) NOT NULL,
-            valorTotal NUMBER(8,2) NOT NULL
+            nomeCliente VARCHAR(255) NOT NULL,
+            valorTotal DECIMAL(8,2) NOT NULL
         )`;
 
         try {
