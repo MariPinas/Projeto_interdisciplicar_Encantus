@@ -3,7 +3,14 @@ import { Evento } from "../model/entity/Evento";
 
 
 export class EventoRepository {
+    public static instance: EventoRepository;
 
+    public static getInstance(): EventoRepository {
+        if (!this.instance) {
+            this.instance = new EventoRepository();
+        }
+        return this.instance;
+    }
     constructor() {
         this.createTable();
     }
