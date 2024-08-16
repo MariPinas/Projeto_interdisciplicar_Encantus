@@ -4,19 +4,27 @@ import { Contrato } from "../model/entity/Contrato";
 
 export class ContratoRepository {
 
+    public static instance: ContratoRepository;
+
+    public static getInstance(): ContratoRepository {
+        if (!this.instance) {
+            this.instance = new ContratoRepository();
+        }
+        return this.instance;
+    }
+
     constructor() {
         this.createTable();
     }
 
     private async createTable() {
         const query = `
-        CREATE TABLE IF NOT EXISTS biblioteca.Livro (
+        CREATE TABLE IF NOT EXISTS encantus.Contrato (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            titulo VARCHAR(255) NOT NULL,
-            autor VARCHAR(255) NOT NULL,
-            categoriaID INT NOT NULL,
-            FOREIGN KEY (categoriaID)
-            REFERENCES biblioteca.Categoria(id)
+            idCliente INT NOT NULL,
+            idEvento INT NOT NULL,
+            nomeCliente, VARCHAR(255) NOT NULL,
+            valorTotal NUMBER(8,2) NOT NULL
         )`;
 
         try {
@@ -26,81 +34,79 @@ export class ContratoRepository {
             console.error('Error');
         }
     }
-    /*
-    async insertLivro(livro:Livro) :Promise<Livro>{
-        const query = "INSERT INTO biblioteca.Livro (titulo, autor, categoriaID) VALUES (?, ?, ?)" ;
+
+    async insertContrato(contrato: Contrato): Promise<Contrato> {
+        const query = "INSERT INTO encantus.Contrato (idCliente, idEvento, nomeCliente, valorTotal) VALUES (?, ?, ?, ?)";
 
         try {
-            const resultado = await executarComandoSQL(query, [livro.titulo, livro.autor, livro.categoriaID]);
-            console.log('Livro inserido com sucesso, ID: ', resultado.insertId);
-            livro.id = resultado.insertId;
-            return new Promise<Livro>((resolve)=>{
-                resolve(livro);
+            const resultado = await executarComandoSQL(query, [contrato.idCliente, contrato.idEvento, contrato.nomeCliente, contrato.valorTotal]);
+            console.log('Contrato inserido com sucesso, ID: ', resultado.insertId);
+            contrato.id = resultado.insertId;
+            return new Promise<Contrato>((resolve) => {
+                resolve(contrato);
             })
         } catch (err) {
-            console.error('Erro ao inserir o livro:', err);
+            console.error('Erro ao inserir o contrato:', err);
             throw err;
         }
     }
 
-    async updateLivro(livro:Livro) :Promise<Livro>{
-        const query = "UPDATE biblioteca.Livro set titulo = ?, autor = ?, categoriaID = ? where id = ?;" ;
+    async updateContrato(contrato: Contrato): Promise<Contrato> {
+        const query = "UPDATE encantus.Contrato set idCliente =?, idEvento=?, nomeCliente=?, valorTotal=? where id = ?;";
 
         try {
-            const resultado = await executarComandoSQL(query, [livro.titulo, livro.autor, livro.categoriaID, livro.id]);
-            console.log('Livro atualizado com sucesso, ID: ', resultado);
-            return new Promise<Livro>((resolve)=>{
-                resolve(livro);
+            const resultado = await executarComandoSQL(query, [contrato.idCliente, contrato.idEvento, contrato.nomeCliente, contrato.valorTotal, contrato.id]);
+            console.log('Contrato atualizado com sucesso, ID: ', resultado);
+            return new Promise<Contrato>((resolve) => {
+                resolve(contrato);
             })
-        } catch (err:any) {
-            console.error(`Erro ao atualizar o livro de ID ${livro.id} gerando o erro: ${err}`);
+        } catch (err: any) {
+            console.error(`Erro ao atualizar o contrato de ID ${contrato.id} gerando o erro: ${err}`);
             throw err;
         }
     }
 
-    async deleteLivro(livro:Livro) :Promise<Livro>{
-        const query = "DELETE FROM biblioteca.Livro where id = ?;" ;
+    async deleteContrato(contrato: Contrato): Promise<Contrato> {
+        const query = "DELETE FROM encantus.Contrato where id = ?;";
 
         try {
-            const resultado = await executarComandoSQL(query, [livro.id]);
-            console.log('Livro deletado com sucesso: ', livro);
-            return new Promise<Livro>((resolve)=>{
-                resolve(livro);
+            const resultado = await executarComandoSQL(query, [contrato.id]);
+            console.log('Contrato deletado com sucesso: ', contrato);
+            return new Promise<Contrato>((resolve) => {
+                resolve(contrato);
             })
-        } catch (err:any) {
-            console.error(`Falha ao deletar o livro de ID ${livro.id} gerando o erro: ${err}`);
+        } catch (err: any) {
+            console.error(`Falha ao deletar o contrato de ID ${contrato.id} gerando o erro: ${err}`);
             throw err;
         }
     }
 
-    async filterLivro(id: number) :Promise<Livro>{
-        const query = "SELECT * FROM biblioteca.Livro where id = ?" ;
+    async filterContrato(id: number): Promise<Contrato> {
+        const query = "SELECT * FROM encantus.Contrato where id = ?";
 
         try {
             const resultado = await executarComandoSQL(query, [id]);
-            console.log('Livro localizado com sucesso, ID: ', resultado);
-            return new Promise<Livro>((resolve)=>{
+            console.log('Contrato localizado com sucesso, ID: ', resultado);
+            return new Promise<Contrato>((resolve) => {
                 resolve(resultado);
             })
-        } catch (err:any) {
-            console.error(`Falha ao procurar o livro de ID ${id} gerando o erro: ${err}`);
+        } catch (err: any) {
+            console.error(`Falha ao procurar o contrato de ID ${id} gerando o erro: ${err}`);
             throw err;
         }
     }
 
-    async filterAllLivro() :Promise<Livro[]>{
-        const query = "SELECT * FROM biblioteca.Livro" ;
+    async filterAllContrato(): Promise<Contrato[]> {
+        const query = "SELECT * FROM encantus.Contrato";
 
         try {
             const resultado = await executarComandoSQL(query, []);
-            return new Promise<Livro[]>((resolve)=>{
+            return new Promise<Contrato[]>((resolve) => {
                 resolve(resultado);
             })
-        } catch (err:any) {
-            console.error(`Falha ao listar os livros gerando o erro: ${err}`);
+        } catch (err: any) {
+            console.error(`Falha ao listar os contratos gerando o erro: ${err}`);
             throw err;
         }
     }
-    */
-
 }

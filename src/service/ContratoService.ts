@@ -1,52 +1,84 @@
 import { Contrato } from "../model/entity/Contrato";
+import { ClienteRepository } from "../repository/ClienteRepository";
 import { ContratoRepository } from "../repository/ContratoRepository";
+import { EventoRepository } from "../repository/EventoRepository";
 
 export class ContratoService {
-    /*
-    livroRepository: LivroRepository = new LivroRepository(); //
 
-    async cadastrarLivro(livroData: any): Promise<Livro> {
-        const { titulo, autor, categoriaID } = livroData;
-        
-        const livro = new Livro(undefined, titulo, autor, categoriaID)
+    private contratoRepository = ContratoRepository.getInstance();
+    private clienteRepository = ClienteRepository.getInstance();
+    // private eventoRepository = EventoRepository.getInstance();
 
-        const novoLivro =  await this.livroRepository.insertLivro(livro);
-        console.log("Service - Insert ", novoLivro);
-        return novoLivro;
+    async inserirContrato(contratoData: any): Promise<Contrato> {
+        const { idCliente, idEvento, nomeCliente, valorTotal } = contratoData;
+
+        const pessoa = await this.clienteRepository.filterCliente(idCliente);
+        if (!pessoa) {
+            throw new Error("Cliente informado não existe.");
+        }
+        /*
+        const evento = await this.eventoRepository.filterEvento(id);
+        if (!evento) {
+            throw new Error("Evento informado não existe.");
+        } remover dps de criar o evento service e repository*/
+
+        const contrato = new Contrato(undefined, idCliente, idEvento, nomeCliente, valorTotal)
+
+        const novoContrato = await this.contratoRepository.insertContrato(contrato);
+        console.log("Service - Insert ", novoContrato);
+        return novoContrato;
     }
 
-    async atualizarLivro(livroData: any): Promise<Livro> {
-        const { id, titulo, autor, categoriaID } = livroData;
+    async atualizarContrato(contratoData: any): Promise<Contrato> {
+        const { id, idCliente, idEvento, nomeCliente, valorTotal } = contratoData;
 
-        const livro = new Livro(id, titulo, autor, categoriaID)
+        const idContrato = await this.contratoRepository.filterContrato(id);
+        if (!idContrato) {
+            throw new Error("Contrato informado não existe.");
+        }
+        const pessoa = await this.clienteRepository.filterCliente(idCliente);
+        if (!pessoa) {
+            throw new Error("Cliente informado não existe.");
+        }
+        /*
+        const evento = await this.eventoRepository.filterEvento(id);
+        if (!evento) {
+            throw new Error("Evento informado não existe.");
+        } remover dps de criar o evento service e repository*/
 
-        await this.livroRepository.updateLivro(livro);
-        console.log("Service - Update ", livro);
-        return livro;
+        const contrato = new Contrato(id, idCliente, idEvento, nomeCliente, valorTotal)
+
+        await this.contratoRepository.updateContrato(contrato);
+        console.log("Service - Update ", contrato);
+        return contrato;
     }
 
-    async deletarLivro(livroData: any): Promise<Livro> {
-        const { id, titulo, autor, categoriaID } = livroData;
+    async deletarContrato(contratoData: any): Promise<Contrato> {
+        const { id, idCliente, idEvento, nomeCliente, valorTotal } = contratoData;
 
-        const livro = new Livro(id, titulo, autor, categoriaID)
+        const idContrato = await this.contratoRepository.filterContrato(id);
+        if (!idContrato) {
+            throw new Error("Contrato informado não existe.");
+        }
 
-        await this.livroRepository.deleteLivro(livro);
-        console.log("Service - Delete ", livro);
-        return livro;
+        const contrato = new Contrato(id, idCliente, idEvento, nomeCliente, valorTotal)
+
+        await this.contratoRepository.deleteContrato(contrato);
+        console.log("Service - Delete ", contrato);
+        return contrato;
     }
 
-    async filtrarLivro(livroData: any): Promise<Livro> {
-        const idNumber = parseInt(livroData, 10);
+    async filtrarContrato(contratoData: any): Promise<Contrato> {
+        const idNumber = parseInt(contratoData, 10);
 
-        const livro =  await this.livroRepository.filterLivro(idNumber);
-        console.log("Service - Filtrar", livro);
-        return livro;
+        const contrato = await this.contratoRepository.filterContrato(idNumber);
+        console.log("Service - Filtrar", contrato);
+        return contrato;
     }
 
-    async listarTodosLivros(): Promise<Livro[]> {
-        const livro =  await this.livroRepository.filterAllLivro();
-        console.log("Service - Filtrar Todos", livro);
-        return livro;
+    async listarTodosContratos(): Promise<Contrato[]> {
+        const contrato = await this.contratoRepository.filterAllContrato();
+        console.log("Service - Filtrar Todos", contrato);
+        return contrato;
     }
-    */
 }
