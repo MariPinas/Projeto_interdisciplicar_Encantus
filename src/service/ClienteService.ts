@@ -9,14 +9,12 @@ export class ClienteService {
     async cadastrarCliente(clienteData: any): Promise<Cliente> {
         const { nome, email, endereco, telefone, cpf } = clienteData;
 
-        /*
-        const clienteExistente = await this.filtrarPorCpf(cpf);
-        
-        if (clienteExistente) {
-            throw new Error(`Já existe um cliente cadastrado com o CPF ${cpf}`);
-        }
-            */
 
+        const clienteExistente = await this.clienteRepository.filterClientePorCpf(cpf);
+
+        if (clienteExistente.length > 0) {
+            throw new Error("Já existe uma pessoa cadastrada com esse e-mail.");
+        }
         const cliente = new Cliente(undefined, nome, email, endereco, telefone, cpf)
 
         const novoCliente = await this.clienteRepository.insertCliente(cliente);
@@ -67,10 +65,10 @@ export class ClienteService {
         console.log("Service - Filtrar Todos", cliente);
         return cliente;
     }
-
+    /*
     async filtrarPorCpf(cpf: string): Promise<Cliente> {
         const cliente = await this.clienteRepository.filterClientePorCpf(cpf);
         console.log("Service - Filtrar por CPF", cliente);
         return cliente;
-    }
+    } */
 }

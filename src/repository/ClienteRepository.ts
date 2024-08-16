@@ -110,12 +110,12 @@ export class ClienteRepository {
         }
     }
 
-    async filterClientePorCpf(cpf: string): Promise<Cliente> {
+    async filterClientePorCpf(cpf: string): Promise<Cliente[]> {
         const query = "SELECT * FROM encantus.Cliente where cpf = ?";
         try {
-            const resultado = await executarComandoSQL(query, [cpf]);
+            const resultado: Cliente[] = await executarComandoSQL(query, [cpf]);
             console.log('Cliente localizado com sucesso, cpf: ', resultado);
-            return new Promise<Cliente>((resolve) => {
+            return new Promise<Cliente[]>((resolve) => {
                 resolve(resultado);
             })
         } catch (err: any) {

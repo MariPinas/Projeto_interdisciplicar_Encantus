@@ -9,3 +9,4 @@ atualizacao v0.6: adicionado pasta entity para entidades e code para os controll
 atualizacao v0.7: adicionado Code Cliente Service e Cliente Repository // adicionado id (tinha esquecido) para a entidade e dto Cliente 
 atualizao v0.8 adicionado Code Contrato Service e Contrato Repository
 atualizacao v0.9 configuraçao das rotas app.ts e script package.json
+atualizacao v1.0 atualizado Cliente Service Verificaçao cpf
