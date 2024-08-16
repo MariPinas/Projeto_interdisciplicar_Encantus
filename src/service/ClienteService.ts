@@ -9,11 +9,13 @@ export class ClienteService {
     async cadastrarCliente(clienteData: any): Promise<Cliente> {
         const { nome, email, endereco, telefone, cpf } = clienteData;
 
+        /*
         const clienteExistente = await this.filtrarPorCpf(cpf);
-
+        
         if (clienteExistente) {
             throw new Error(`Já existe um cliente cadastrado com o CPF ${cpf}`);
         }
+            */
 
         const cliente = new Cliente(undefined, nome, email, endereco, telefone, cpf)
 

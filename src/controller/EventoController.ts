@@ -2,7 +2,7 @@ import { Body, Controller, Post, Res, Route, Tags, TsoaResponse, Put, Delete, Ge
 import { EventoService } from "../service/EventoService";
 import { EventoRequestsDto } from "../model/dto/EventoRequestsDto";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
-
+/*
 @Route("evento")
 @Tags("Evento")
 export class EventoController extends Controller {
@@ -80,3 +80,4 @@ export class EventoController extends Controller {
         }
     };
 }
+*/
