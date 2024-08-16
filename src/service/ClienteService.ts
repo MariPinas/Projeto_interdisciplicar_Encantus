@@ -13,7 +13,7 @@ export class ClienteService {
         const clienteExistente = await this.clienteRepository.filterClientePorCpf(cpf);
 
         if (clienteExistente.length > 0) {
-            throw new Error("Já existe uma pessoa cadastrada com esse e-mail.");
+            throw new Error("Já existe uma pessoa cadastrada com esse cpf.");
         }
         const cliente = new Cliente(undefined, nome, email, endereco, telefone, cpf)
 
