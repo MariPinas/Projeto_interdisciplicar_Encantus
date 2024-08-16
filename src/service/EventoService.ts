@@ -2,53 +2,49 @@ import { Evento } from "../model/entity/Evento";
 import { EventoRepository } from "../repository/EventoRepository";
 
 export class EventoService {
+    private eventoRepository = EventoRepository.getInstance();
 
-    /*
-    categoriaRepository: CategoriaRepository = new CategoriaRepository(); //
-
-    async cadastrarCategoria(categoriaData: any): Promise<Categoria> {
-        const { name } = categoriaData;
+    async cadastrarEvento(eventoData: any): Promise<Evento> {
+        const {idCliente, rua, numero, cep, nomeAniversariante, idFuncionario} = eventoData;
         
-        const categoria = new Categoria(undefined, name)
+        const evento = new Evento(undefined, idCliente, rua, numero, cep, nomeAniversariante, idFuncionario)
 
-        const novaCategoria =  await this.categoriaRepository.insertCategoria(categoria);
-        console.log("Service - Insert ", novaCategoria);
-        return novaCategoria;
+        const novoEvento =  await this.eventoRepository.insertEvento(evento);
+        console.log("Service - Insert ", novoEvento);
+        return novoEvento;
     }
 
-    async atualizarCategoria(categoriaData: any): Promise<Categoria> {
-        const { id, name } = categoriaData;
+    async atualizarEvento(eventoData: any): Promise<Evento> {
+        const { id, idCliente, rua, numero, cep, nomeAniversariante, idFuncionario } = eventoData;
 
-        const categoria = new Categoria(id, name)
+        const evento = new Evento(id, idCliente, rua, numero, cep, nomeAniversariante, idFuncionario)
 
-        await this.categoriaRepository.updateCategoria(categoria);
-        console.log("Service - Update ", categoria);
-        return categoria;
+        await this.eventoRepository.updateEvento(evento);
+        console.log("Service - Update ", evento);
+        return evento;
     }
 
-    async deletarCategoria(categoriaData: any): Promise<Categoria> {
-        const { id, name } = categoriaData;
+    async deletarEvento(eventoData: any): Promise<Evento> {
+        const { id, idCliente, rua, numero, cep, nomeAniversariante, idFuncionario } = eventoData;
 
-        const categoria = new Categoria(id, name)
+        const evento = new Evento(id, idCliente, rua, numero, cep, nomeAniversariante, idFuncionario)
 
-        await this.categoriaRepository.deleteCategoria(categoria);
-        console.log("Service - Delete ", categoria);
-        return categoria;
+        await this.eventoRepository.deleteEvento(evento);
+        console.log("Service - Delete ", evento);
+        return evento;
     }
 
-    async filtrarCategoria(categoriaData: any): Promise<Categoria> {
-        const idNumber = parseInt(categoriaData, 10);
+    async filtrarEvento(eventoData: any): Promise<Evento> {
+        const idNumber = parseInt(eventoData, 10);
 
-        const categoria =  await this.categoriaRepository.filterCategoria(idNumber);
-        console.log("Service - Filtrar", categoria);
-        return categoria;
+        const evento =  await this.eventoRepository.filterEvento(idNumber);
+        console.log("Service - Filtrar", evento);
+        return evento;
     }
 
-    async listarTodasCategorias(): Promise<Categoria[]> {
-        const categoria =  await this.categoriaRepository.filterAllCategoria();
-        console.log("Service - Filtrar Todos", categoria);
-        return categoria;
+    async listarTodasEventos(): Promise<Evento[]> {
+        const evento =  await this.eventoRepository.filterAllEvento();
+        console.log("Service - Filtrar Todos", evento);
+        return evento;
     }   
-    */
-
 }
