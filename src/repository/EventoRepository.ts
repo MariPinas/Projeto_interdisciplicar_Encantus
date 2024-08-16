@@ -10,9 +10,16 @@ export class EventoRepository {
 
     private async createTable() {
         const query = `
-        CREATE TABLE IF NOT EXISTS biblioteca.Categoria (
+        CREATE TABLE IF NOT EXISTS encantus.Evento (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            nome VARCHAR(255) NOT NULL
+            idCliente INT NOT NULL,
+            rua VARCHAR(255) NOT NULL,
+            numero INT NOT NULL,
+            cep VARCHAR(255) NOT NULL,
+            nomeAniversariante VARCHAR(255) NOT NULL,
+            idFuncionario INT NOT NULL,
+            FOREIGN KEY (idCliente) REFERENCES Cliente(id),
+            FOREIGN KEY (idFuncionario) REFERENCES Funcionario(id)
         )`;
 
         try {
@@ -22,81 +29,79 @@ export class EventoRepository {
             console.error('Error');
         }
     }
-    /*
-    async insertCategoria(categoria:Categoria) :Promise<Categoria>{
-        const query = "INSERT INTO biblioteca.Categoria (nome) VALUES (?)" ;
+   
+    async insertEvento(evento:Evento) :Promise<Evento>{
+        const query = "INSERT INTO encantus.Evento (idCliente, rua, numero, cep, nomeAniversariante, idFuncionario) VALUES (?,?,?,?,?,?)" ;
 
         try {
-            const resultado = await executarComandoSQL(query, [categoria.nome]);
-            console.log('categoria inserida com sucesso, ID: ', resultado.insertId);
-            categoria.id = resultado.insertId;
-            return new Promise<Categoria>((resolve)=>{
-                resolve(categoria);
+            const resultado = await executarComandoSQL(query, [evento.idCliente, evento.rua, evento.numero, evento.cep, evento.nomeAniversariante, evento.idFuncionario]);
+            console.log('Evento inserido com sucesso, ID: ', resultado.insertId);
+            evento.id = resultado.insertId;
+            return new Promise<Evento>((resolve)=>{
+                resolve(evento);
             })
         } catch (err) {
-            console.error('Erro ao inserir a categoria:', err);
+            console.error('Erro ao inserir o evento:', err);
             throw err;
         }
     }
 
-    async updateCategoria(categoria:Categoria) :Promise<Categoria>{
-        const query = "UPDATE biblioteca.Categoria set nome = ? where id = ?;" ;
+    async updateEvento(evento:Evento) :Promise<Evento>{
+        const query = "UPDATE encantus.Evento set idCliente = ?,  rua = ?, numero=?, cep=?, nomeAniversariante=?, idFuncionario=? where id = ?;" ;
 
         try {
-            const resultado = await executarComandoSQL(query, [categoria.nome, categoria.id]);
-            console.log('Categoria atualizada com sucesso, ID: ', resultado);
-            return new Promise<Categoria>((resolve)=>{
-                resolve(categoria);
+            const resultado = await executarComandoSQL(query, [evento.idCliente, evento.rua, evento.numero, evento.cep, evento.nomeAniversariante, evento.idFuncionario, evento.id]);
+            console.log('Evento atualizado com sucesso, ID: ', resultado);
+            return new Promise<Evento>((resolve)=>{
+                resolve(evento);
             })
         } catch (err:any) {
-            console.error(`Erro ao atualizar a categoria de ID ${categoria.id} gerando o erro: ${err}`);
+            console.error(`Erro ao atualizar o evento de ID ${evento.id} gerando o erro: ${err}`);
             throw err;
         }
     }
 
-    async deleteCategoria(categoria:Categoria) :Promise<Categoria>{
-        const query = "DELETE FROM biblioteca.Categoria where id = ?;" ;
+    async deleteEvento(evento:Evento) :Promise<Evento>{
+        const query = "DELETE FROM encantus.Evento where id = ?;" ;
 
         try {
-            const resultado = await executarComandoSQL(query, [categoria.id]);
-            console.log('Categoria deletada com sucesso: ', categoria);
-            return new Promise<Categoria>((resolve)=>{
-                resolve(categoria);
+            const resultado = await executarComandoSQL(query, [evento.id]);
+            console.log('Evento deletado com sucesso: ', evento);
+            return new Promise<Evento>((resolve)=>{
+                resolve(evento);
             })
         } catch (err:any) {
-            console.error(`Falha ao deletar a categoria de ID ${categoria.id} gerando o erro: ${err}`);
+            console.error(`Falha ao deletar o evento de ID ${evento.id} gerando o erro: ${err}`);
             throw err;
         }
     }
 
-    async filterCategoria(id: number) :Promise<Categoria>{
-        const query = "SELECT * FROM biblioteca.Categoria where id = ?" ;
+    async filterEvento(id: number) :Promise<Evento>{
+        const query = "SELECT * FROM encantus.Evento where id = ?" ;
 
         try {
             const resultado = await executarComandoSQL(query, [id]);
-            console.log('Categoria localizada com sucesso, ID: ', resultado);
-            return new Promise<Categoria>((resolve)=>{
+            console.log('Evento localizado com sucesso, ID: ', resultado);
+            return new Promise<Evento>((resolve)=>{
                 resolve(resultado);
             })
         } catch (err:any) {
-            console.error(`Falha ao procurar a categoria de ID ${id} gerando o erro: ${err}`);
+            console.error(`Falha ao procurar o evento de ID ${id} gerando o erro: ${err}`);
             throw err;
         }
     }
 
-    async filterAllCategoria() :Promise<Categoria[]>{
-        const query = "SELECT * FROM biblioteca.Categoria" ;
+    async filterAllEvento() :Promise<Evento[]>{
+        const query = "SELECT * FROM encantus.Evento" ;
 
         try {
             const resultado = await executarComandoSQL(query, []);
-            return new Promise<Categoria[]>((resolve)=>{
+            return new Promise<Evento[]>((resolve)=>{
                 resolve(resultado);
             })
         } catch (err:any) {
-            console.error(`Falha ao listar as categorias gerando o erro: ${err}`);
+            console.error(`Falha ao listar os eventos gerando o erro: ${err}`);
             throw err;
         }
     }
-
-    */
 }
