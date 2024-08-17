@@ -1,13 +1,11 @@
 export class ClienteRequestDto {
-    id: number;
     nome: string;
     email: string;
     endereco: string;
     telefone: string;
     cpf: string;
 
-    constructor(id?: number, nome?: string, email?: string, endereco?: string, telefone?: string, cpf?: string) {
-        this.id = id || 0;
+    constructor(nome?: string, email?: string, endereco?: string, telefone?: string, cpf?: string) {
         this.nome = nome || '';
         this.email = email || '';
         this.endereco = endereco || '';

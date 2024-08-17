@@ -67,7 +67,7 @@ export class EventoController extends Controller {
         }
     };
 
-    @Get("idCliente")
+    @Get("idCliente/{idCliente}")
     async filtrarEventoPorIdCliente(
         @Path() idCliente: number,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,

@@ -1,6 +1,7 @@
 import { Body, Controller, Post, Res, Route, Tags, TsoaResponse, Put, Delete, Get, Path } from "tsoa";
 import { ClienteService } from "../service/ClienteService";
-import { ClienteRequestDto } from "../model/dto/ClienteRequestDto";
+import { ClienteRequestDto } from "../model/dto/ClienteDTO/ClienteRequestDto";
+import { ClienteDto } from "../model/dto/ClienteDTO/ClienteDto";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
 
 
@@ -26,7 +27,7 @@ export class ClienteController extends Controller {
 
     @Put()
     async atualizarCliente(
-        @Body() dto: ClienteRequestDto,
+        @Body() dto: ClienteDto,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<201, BasicResponseDto>
     ): Promise<void> {
@@ -40,7 +41,7 @@ export class ClienteController extends Controller {
 
     @Delete()
     async deletarCliente(
-        @Body() dto: ClienteRequestDto,
+        @Body() dto: ClienteDto,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<201, BasicResponseDto>
     ): Promise<void> {

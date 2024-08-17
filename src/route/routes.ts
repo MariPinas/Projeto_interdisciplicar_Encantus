@@ -3,6 +3,8 @@
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { TsoaRoute, fetchMiddlewares, ExpressTemplateService } from '@tsoa/runtime';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { EventoController } from './../controller/EventoController';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { ContratoController } from './../controller/ContratoController';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { ClienteController } from './../controller/ClienteController';
@@ -13,14 +15,15 @@ import type { Request as ExRequest, Response as ExResponse, RequestHandler, Rout
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 const models: TsoaRoute.Models = {
-    "ContratoRequestsDto": {
+    "EventoRequestDto": {
         "dataType": "refObject",
         "properties": {
-            "id": {"dataType":"double","required":true},
             "idCliente": {"dataType":"double","required":true},
-            "idEvento": {"dataType":"double","required":true},
-            "nomeCliente": {"dataType":"string","required":true},
-            "valorTotal": {"dataType":"double","required":true},
+            "rua": {"dataType":"string","required":true},
+            "numero": {"dataType":"double","required":true},
+            "cep": {"dataType":"double","required":true},
+            "nomeAniversariante": {"dataType":"string","required":true},
+            "idFuncionario": {"dataType":"double","required":true},
         },
         "additionalProperties": false,
     },
@@ -30,6 +33,32 @@ const models: TsoaRoute.Models = {
         "properties": {
             "message": {"dataType":"string","required":true},
             "object": {"dataType":"any","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "EventoDto": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"double","required":true},
+            "idCliente": {"dataType":"double","required":true},
+            "rua": {"dataType":"string","required":true},
+            "numero": {"dataType":"double","required":true},
+            "cep": {"dataType":"double","required":true},
+            "nomeAniversariante": {"dataType":"string","required":true},
+            "idFuncionario": {"dataType":"double","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "ContratoRequestsDto": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"double","required":true},
+            "idCliente": {"dataType":"double","required":true},
+            "idEvento": {"dataType":"double","required":true},
+            "nomeCliente": {"dataType":"string","required":true},
+            "valorTotal": {"dataType":"double","required":true},
         },
         "additionalProperties": false,
     },
@@ -64,6 +93,197 @@ export function RegisterRoutes(app: Router) {
 
 
     
+        app.post('/evento',
+            ...(fetchMiddlewares<RequestHandler>(EventoController)),
+            ...(fetchMiddlewares<RequestHandler>(EventoController.prototype.inserirEvento)),
+
+            async function EventoController_inserirEvento(request: ExRequest, response: ExResponse, next: any) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
+                    dto: {"in":"body","name":"dto","required":true,"ref":"EventoRequestDto"},
+                    fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
+                    sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args, request, response });
+
+                const controller = new EventoController();
+
+              await templateService.apiHandler({
+                methodName: 'inserirEvento',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.put('/evento',
+            ...(fetchMiddlewares<RequestHandler>(EventoController)),
+            ...(fetchMiddlewares<RequestHandler>(EventoController.prototype.atualizarEvento)),
+
+            async function EventoController_atualizarEvento(request: ExRequest, response: ExResponse, next: any) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
+                    dto: {"in":"body","name":"dto","required":true,"ref":"EventoDto"},
+                    fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
+                    sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args, request, response });
+
+                const controller = new EventoController();
+
+              await templateService.apiHandler({
+                methodName: 'atualizarEvento',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.delete('/evento',
+            ...(fetchMiddlewares<RequestHandler>(EventoController)),
+            ...(fetchMiddlewares<RequestHandler>(EventoController.prototype.deletarEvento)),
+
+            async function EventoController_deletarEvento(request: ExRequest, response: ExResponse, next: any) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
+                    dto: {"in":"body","name":"dto","required":true,"ref":"EventoDto"},
+                    fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
+                    sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args, request, response });
+
+                const controller = new EventoController();
+
+              await templateService.apiHandler({
+                methodName: 'deletarEvento',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/evento/id/:id',
+            ...(fetchMiddlewares<RequestHandler>(EventoController)),
+            ...(fetchMiddlewares<RequestHandler>(EventoController.prototype.filtrarEvento)),
+
+            async function EventoController_filtrarEvento(request: ExRequest, response: ExResponse, next: any) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
+                    id: {"in":"path","name":"id","required":true,"dataType":"double"},
+                    fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
+                    sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args, request, response });
+
+                const controller = new EventoController();
+
+              await templateService.apiHandler({
+                methodName: 'filtrarEvento',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/evento/idCliente/:idCliente',
+            ...(fetchMiddlewares<RequestHandler>(EventoController)),
+            ...(fetchMiddlewares<RequestHandler>(EventoController.prototype.filtrarEventoPorIdCliente)),
+
+            async function EventoController_filtrarEventoPorIdCliente(request: ExRequest, response: ExResponse, next: any) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
+                    idCliente: {"in":"path","name":"idCliente","required":true,"dataType":"double"},
+                    fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
+                    sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args, request, response });
+
+                const controller = new EventoController();
+
+              await templateService.apiHandler({
+                methodName: 'filtrarEventoPorIdCliente',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/evento/all',
+            ...(fetchMiddlewares<RequestHandler>(EventoController)),
+            ...(fetchMiddlewares<RequestHandler>(EventoController.prototype.listarTodosEventos)),
+
+            async function EventoController_listarTodosEventos(request: ExRequest, response: ExResponse, next: any) {
+            const args: Record<string, TsoaRoute.ParameterSchema> = {
+                    fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
+                    sucess: {"in":"res","name":"200","required":true,"ref":"BasicResponseDto"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args, request, response });
+
+                const controller = new EventoController();
+
+              await templateService.apiHandler({
+                methodName: 'listarTodosEventos',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.post('/contrato',
             ...(fetchMiddlewares<RequestHandler>(ContratoController)),
             ...(fetchMiddlewares<RequestHandler>(ContratoController.prototype.inserirContrato)),

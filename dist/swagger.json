@@ -7,6 +7,97 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
+			"EventoRequestDto": {
+				"properties": {
+					"idCliente": {
+						"type": "number",
+						"format": "double"
+					},
+					"rua": {
+						"type": "string"
+					},
+					"numero": {
+						"type": "number",
+						"format": "double"
+					},
+					"cep": {
+						"type": "number",
+						"format": "double"
+					},
+					"nomeAniversariante": {
+						"type": "string"
+					},
+					"idFuncionario": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"idCliente",
+					"rua",
+					"numero",
+					"cep",
+					"nomeAniversariante",
+					"idFuncionario"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"BasicResponseDto": {
+				"properties": {
+					"message": {
+						"type": "string"
+					},
+					"object": {}
+				},
+				"required": [
+					"message",
+					"object"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"EventoDto": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"idCliente": {
+						"type": "number",
+						"format": "double"
+					},
+					"rua": {
+						"type": "string"
+					},
+					"numero": {
+						"type": "number",
+						"format": "double"
+					},
+					"cep": {
+						"type": "number",
+						"format": "double"
+					},
+					"nomeAniversariante": {
+						"type": "string"
+					},
+					"idFuncionario": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"id",
+					"idCliente",
+					"rua",
+					"numero",
+					"cep",
+					"nomeAniversariante",
+					"idFuncionario"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"ContratoRequestsDto": {
 				"properties": {
 					"id": {
@@ -35,20 +126,6 @@
 					"idEvento",
 					"nomeCliente",
 					"valorTotal"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"BasicResponseDto": {
-				"properties": {
-					"message": {
-						"type": "string"
-					},
-					"object": {}
-				},
-				"required": [
-					"message",
-					"object"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -95,6 +172,262 @@
 		"description": "Documentação da API usando Swagger"
 	},
 	"paths": {
+		"/evento": {
+			"post": {
+				"operationId": "InserirEvento",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BasicResponseDto"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No content"
+					},
+					"400": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BasicResponseDto"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Evento"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/EventoRequestDto"
+							}
+						}
+					}
+				}
+			},
+			"put": {
+				"operationId": "AtualizarEvento",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BasicResponseDto"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No content"
+					},
+					"400": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BasicResponseDto"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Evento"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/EventoDto"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "DeletarEvento",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BasicResponseDto"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No content"
+					},
+					"400": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BasicResponseDto"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Evento"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/EventoDto"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/evento/id/{id}": {
+			"get": {
+				"operationId": "FiltrarEvento",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BasicResponseDto"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No content"
+					},
+					"400": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BasicResponseDto"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Evento"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/evento/idCliente/{idCliente}": {
+			"get": {
+				"operationId": "FiltrarEventoPorIdCliente",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BasicResponseDto"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No content"
+					},
+					"400": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BasicResponseDto"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Evento"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "idCliente",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/evento/all": {
+			"get": {
+				"operationId": "ListarTodosEventos",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BasicResponseDto"
+								}
+							}
+						}
+					},
+					"204": {
+						"description": "No content"
+					},
+					"400": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BasicResponseDto"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Evento"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
 		"/contrato": {
 			"post": {
 				"operationId": "InserirContrato",

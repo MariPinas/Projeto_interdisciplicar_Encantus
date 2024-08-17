@@ -62,10 +62,8 @@ export class EventoService {
         return evento;
     }
 
-    async filtrarEventoPorIdCliente(eventoData: any): Promise<Evento[]> {
-        const idNumber = parseInt(eventoData, 10);
-
-        const evento =  await this.eventoRepository.filterEvento(idNumber);
+    async filtrarEventoPorIdCliente(idCliente : number): Promise<Evento> {
+        const evento =  await this.eventoRepository.filterEventoPorIdCliente(idCliente);
         console.log("Service - Filtrar", evento);
         return evento;
     }
