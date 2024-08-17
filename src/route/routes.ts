@@ -66,6 +66,18 @@ const models: TsoaRoute.Models = {
     "ClienteRequestDto": {
         "dataType": "refObject",
         "properties": {
+            "nome": {"dataType":"string","required":true},
+            "email": {"dataType":"string","required":true},
+            "endereco": {"dataType":"string","required":true},
+            "telefone": {"dataType":"string","required":true},
+            "cpf": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "ClienteDto": {
+        "dataType": "refObject",
+        "properties": {
             "id": {"dataType":"double","required":true},
             "nome": {"dataType":"string","required":true},
             "email": {"dataType":"string","required":true},
@@ -481,7 +493,7 @@ export function RegisterRoutes(app: Router) {
 
             async function ClienteController_atualizarCliente(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    dto: {"in":"body","name":"dto","required":true,"ref":"ClienteRequestDto"},
+                    dto: {"in":"body","name":"dto","required":true,"ref":"ClienteDto"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"201","required":true,"ref":"BasicResponseDto"},
             };
@@ -513,7 +525,7 @@ export function RegisterRoutes(app: Router) {
 
             async function ClienteController_deletarCliente(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    dto: {"in":"body","name":"dto","required":true,"ref":"ClienteRequestDto"},
+                    dto: {"in":"body","name":"dto","required":true,"ref":"ClienteDto"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"201","required":true,"ref":"BasicResponseDto"},
             };

@@ -15,3 +15,4 @@ atualizacao v1.2: adicionado service basico de evento.
 atualizacao v1.3: adicionado controller evento e dto evento.
 atualizacao v1.4: adicionado regras de negocio em service evento.
 atualizacao v1.5: ajustado erros de evento e adicionado dtos de cliente.
+atualizacao v1.6: ajustado erros em evento.

@@ -25,8 +25,7 @@ export class EventoRepository {
             cep VARCHAR(255) NOT NULL,
             nomeAniversariante VARCHAR(255) NOT NULL,
             idFuncionario INT NOT NULL,
-            FOREIGN KEY (idCliente) REFERENCES Cliente(id),
-            FOREIGN KEY (idFuncionario) REFERENCES Funcionario(id)
+            FOREIGN KEY (idCliente) REFERENCES Cliente(id)
         )`;
 
         try {

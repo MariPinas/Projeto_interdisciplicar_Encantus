@@ -21,7 +21,7 @@ export class Evento{
 
     private validatesInformation(idCliente:any, rua:any, numero:any, cep:any, nomeAniversariante:any, idFuncionario:any){
         let error ='';
-        if (typeof idCliente !=='number' ||typeof rua!=='number'|| typeof numero!=='number'|| typeof cep!=='number'|| typeof nomeAniversariante!=='number'||typeof idFuncionario!=='number') {
+        if (typeof idCliente !=='number' ||typeof rua!=='string'|| typeof numero!=='number'|| typeof cep!=='number'|| typeof nomeAniversariante!=='string'||typeof idFuncionario!=='number') {
             error += ("Informações incompletas ou incorretas. ");
         }
 
