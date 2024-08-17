@@ -83,13 +83,13 @@ export class EventoRepository {
         }
     }
 
-    async filterEvento(id: number) :Promise<Evento>{
+    async filterEvento(id: number) :Promise<Evento[]>{
         const query = "SELECT * FROM encantus.Evento where id = ?" ;
 
         try {
             const resultado = await executarComandoSQL(query, [id]);
             console.log('Evento localizado com sucesso, ID: ', resultado);
-            return new Promise<Evento>((resolve)=>{
+            return new Promise<Evento[]>((resolve)=>{
                 resolve(resultado);
             })
         } catch (err:any) {

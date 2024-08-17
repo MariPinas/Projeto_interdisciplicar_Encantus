@@ -81,13 +81,13 @@ export class ClienteRepository {
         }
     }
 
-    async filterCliente(id: number): Promise<Cliente> {
+    async filterCliente(id: number): Promise<Cliente[]> {
         const query = "SELECT * FROM encantus.Cliente where id = ?";
 
         try {
             const resultado = await executarComandoSQL(query, [id]);
             console.log('Cliente localizado com sucesso, ID: ', resultado);
-            return new Promise<Cliente>((resolve) => {
+            return new Promise<Cliente[]>((resolve) => {
                 resolve(resultado);
             })
         } catch (err: any) {

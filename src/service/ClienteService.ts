@@ -52,7 +52,7 @@ export class ClienteService {
         return cliente;
     }
 
-    async filtrarCliente(clienteData: any): Promise<Cliente> {
+    async filtrarCliente(clienteData: any): Promise<Cliente[]> {
         const idNumber = parseInt(clienteData, 10);
 
         const cliente = await this.clienteRepository.filterCliente(idNumber);

@@ -1,5 +1,5 @@
 # web_01_2024
-Projeto II
+Projeto Interdisciplinar - Andriel e Mariana
 atualizacao v0.1: adicionado o basico do MVC.
 atualizacao v0.2: cliente swagger cadastrar.
 atualizacao v0.3: Arrumado a estrutura.
@@ -13,3 +13,4 @@ atualizacao v1.0: atualizado Cliente Service Verificaçao cpf
 atualizacao v1.1: adicionado repository de evento.
 atualizacao v1.2: adicionado service basico de evento.
 atualizacao v1.3: adicionado controller evento e dto evento.
+atualizacao v1.4: adicionado regras de negocio em service evento.
