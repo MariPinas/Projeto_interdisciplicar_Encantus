@@ -1,5 +1,4 @@
-export class EventoRequestsDto{
-    id: number;
+export class EventoRequestDto{
     idCliente: number;
     rua: string;
     numero: number;
@@ -7,8 +6,7 @@ export class EventoRequestsDto{
     nomeAniversariante: string;
     idFuncionario: number;
 
-    constructor(id?:number, idCliente?:number, rua?: string, numero?:number, cep?:number, nomeAniversariante?:string, idFuncionario?:number){
-        this.id = id || 0;
+    constructor(idCliente?:number, rua?: string, numero?:number, cep?:number, nomeAniversariante?:string, idFuncionario?:number){
         this.idCliente = idCliente || 0;
         this.rua = rua || '';
         this.numero = numero || 0;

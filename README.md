@@ -12,3 +12,4 @@ atualizacao v0.9: configuraçao das rotas app.ts e script package.json
 atualizacao v1.0: atualizado Cliente Service Verificaçao cpf
 atualizacao v1.1: adicionado repository de evento.
 atualizacao v1.2: adicionado service basico de evento.
+atualizacao v1.3: adicionado controller evento e dto evento.

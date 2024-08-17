@@ -1,8 +1,9 @@
 import { Body, Controller, Post, Res, Route, Tags, TsoaResponse, Put, Delete, Get, Path } from "tsoa";
 import { EventoService } from "../service/EventoService";
-import { EventoRequestsDto } from "../model/dto/EventoRequestsDto";
+import { EventoRequestDto} from "../model/dto/EventoDTO/EventoRequestDto";
+import { EventoDto } from "../model/dto/EventoDTO/EventoDto";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
-/*
+
 @Route("evento")
 @Tags("Evento")
 export class EventoController extends Controller {
@@ -10,13 +11,13 @@ export class EventoController extends Controller {
 
     @Post()
     async inserirEvento(
-        @Body() dto: EventoRequestsDto,
+        @Body() dto: EventoRequestDto,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
-        @Res() sucess: TsoaResponse<201, BasicResponseDto>
+        @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ): Promise<void> {
         try {
-            const novoEvento = await this.eventoService.inserirEVento(dto);
-            return sucess(201, new BasicResponseDto("Evento criado com sucesso", novoEvento));
+            const novoEvento = await this.eventoService.cadastrarEvento(dto);
+            return sucess(200, new BasicResponseDto("Evento criado com sucesso", novoEvento));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined))
         }
@@ -24,13 +25,13 @@ export class EventoController extends Controller {
 
     @Put()
     async atualizarEvento(
-        @Body() dto: EventoRequestsDto,
+        @Body() dto: EventoDto,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
-        @Res() sucess: TsoaResponse<201, BasicResponseDto>
+        @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ): Promise<void> {
         try {
             const novoEvento = await this.eventoService.atualizarEvento(dto);
-            return sucess(201, new BasicResponseDto("Evento atualizado com sucesso", novoEvento));
+            return sucess(200, new BasicResponseDto("Evento atualizado com sucesso", novoEvento));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined))
         }
@@ -39,13 +40,13 @@ export class EventoController extends Controller {
 
     @Delete()
     async deletarEvento(
-        @Body() dto: EventoRequestsDto,
+        @Body() dto: EventoDto,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
-        @Res() sucess: TsoaResponse<201, BasicResponseDto>
+        @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ): Promise<void> {
         try {
             const novoEvento = await this.eventoService.deletarEvento(dto);
-            return sucess(201, new BasicResponseDto("Evento deletado com sucesso", novoEvento));
+            return sucess(200, new BasicResponseDto("Evento deletado com sucesso", novoEvento));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined))
         }
@@ -56,11 +57,25 @@ export class EventoController extends Controller {
     async filtrarEvento(
         @Path() id: number,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
-        @Res() sucess: TsoaResponse<201, BasicResponseDto>
+        @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ): Promise<void> {
         try {
             const novoEvento = await this.eventoService.filtrarEvento(id);
-            return sucess(201, new BasicResponseDto("Evento encontrado com sucesso", novoEvento));
+            return sucess(200, new BasicResponseDto("Evento encontrado com sucesso", novoEvento));
+        } catch (error: any) {
+            return fail(400, new BasicResponseDto(error.message, undefined))
+        }
+    };
+
+    @Get("idCliente")
+    async filtrarEventoPorIdCliente(
+        @Path() idCliente: number,
+        @Res() fail: TsoaResponse<400, BasicResponseDto>,
+        @Res() sucess: TsoaResponse<200, BasicResponseDto>
+    ): Promise<void> {
+        try {
+            const novoEvento = await this.eventoService.filtrarEventoPorIdCliente(idCliente);
+            return sucess(200, new BasicResponseDto("Evento encontrado com sucesso", novoEvento));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined))
         }
@@ -70,14 +85,13 @@ export class EventoController extends Controller {
     @Get("all")
     async listarTodosEventos(
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
-        @Res() sucess: TsoaResponse<201, BasicResponseDto>
+        @Res() sucess: TsoaResponse<200, BasicResponseDto>
     ): Promise<void> {
         try {
             const novoEvento = await this.eventoService.listarTodosEventos();
-            return sucess(201, new BasicResponseDto("Eventos listados com sucesso", novoEvento));
+            return sucess(200, new BasicResponseDto("Eventos listados com sucesso", novoEvento));
         } catch (error: any) {
             return fail(400, new BasicResponseDto(error.message, undefined))
         }
     };
 }
-*/

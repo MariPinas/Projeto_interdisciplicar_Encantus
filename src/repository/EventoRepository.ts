@@ -98,7 +98,22 @@ export class EventoRepository {
         }
     }
 
-    async filterAllEvento() :Promise<Evento[]>{
+    async filterEventoPorIdCliente(idCliente: number) :Promise<Evento>{
+        const query = "SELECT * FROM encantus.Evento where idCliente = ?" ;
+
+        try {
+            const resultado = await executarComandoSQL(query, [idCliente]);
+            console.log('Evento localizado com sucesso, ID de cliente: ', resultado);
+            return new Promise<Evento>((resolve)=>{
+                resolve(resultado);
+            })
+        } catch (err:any) {
+            console.error(`Falha ao procurar o evento de ID ${idCliente} gerando o erro: ${err}`);
+            throw err;
+        }
+    }
+
+    async filterAllEventos() :Promise<Evento[]>{
         const query = "SELECT * FROM encantus.Evento" ;
 
         try {
