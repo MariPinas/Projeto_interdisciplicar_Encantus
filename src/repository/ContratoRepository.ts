@@ -24,7 +24,9 @@ export class ContratoRepository {
             idCliente INT NOT NULL,
             idEvento INT NOT NULL,
             nomeCliente VARCHAR(255) NOT NULL,
-            valorTotal DECIMAL(8,2) NOT NULL
+            valorTotal DECIMAL(8,2) NOT NULL,
+            FOREIGN KEY (idCliente) REFERENCES Cliente(id)
+            FOREIGN KEY (idEvento) REFERENCES Evento(idEvento)
         )`;
 
         try {
@@ -81,13 +83,13 @@ export class ContratoRepository {
         }
     }
 
-    async filterContrato(id: number): Promise<Contrato> {
+    async filterContrato(id: number): Promise<Contrato[]> {
         const query = "SELECT * FROM encantus.Contrato where id = ?";
 
         try {
             const resultado = await executarComandoSQL(query, [id]);
             console.log('Contrato localizado com sucesso, ID: ', resultado);
-            return new Promise<Contrato>((resolve) => {
+            return new Promise<Contrato[]>((resolve) => {
                 resolve(resultado);
             })
         } catch (err: any) {

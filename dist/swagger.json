@@ -98,7 +98,34 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"ContratoRequestsDto": {
+			"ContratoRequestDto": {
+				"properties": {
+					"idCliente": {
+						"type": "number",
+						"format": "double"
+					},
+					"idEvento": {
+						"type": "number",
+						"format": "double"
+					},
+					"nomeCliente": {
+						"type": "string"
+					},
+					"valorTotal": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"idCliente",
+					"idEvento",
+					"nomeCliente",
+					"valorTotal"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ContratoDto": {
 				"properties": {
 					"id": {
 						"type": "number",
@@ -494,7 +521,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/ContratoRequestsDto"
+								"$ref": "#/components/schemas/ContratoRequestDto"
 							}
 						}
 					}
@@ -537,7 +564,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/ContratoRequestsDto"
+								"$ref": "#/components/schemas/ContratoDto"
 							}
 						}
 					}
@@ -580,7 +607,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/ContratoRequestsDto"
+								"$ref": "#/components/schemas/ContratoDto"
 							}
 						}
 					}

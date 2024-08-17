@@ -26,7 +26,7 @@ export class ClienteService {
         const { id, nome, email, endereco, telefone, cpf } = clienteData;
 
         const pessoa = await this.clienteRepository.filterCliente(id);
-        if (!pessoa) {
+        if (pessoa.length == 0) {
             throw new Error("Cliente informado não existe.");
         }
 
@@ -43,7 +43,7 @@ export class ClienteService {
         const cliente = new Cliente(id, nome, email, endereco, telefone, cpf)
 
         const pessoa = await this.clienteRepository.filterCliente(id);
-        if (!pessoa) {
+        if (pessoa.length == 0) {
             throw new Error("Cliente informado não existe.");
         }
 

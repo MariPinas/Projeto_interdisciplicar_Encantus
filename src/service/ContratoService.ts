@@ -7,20 +7,20 @@ export class ContratoService {
 
     private contratoRepository = ContratoRepository.getInstance();
     private clienteRepository = ClienteRepository.getInstance();
-    // private eventoRepository = EventoRepository.getInstance();
+    private eventoRepository = EventoRepository.getInstance();
 
     async inserirContrato(contratoData: any): Promise<Contrato> {
         const { idCliente, idEvento, nomeCliente, valorTotal } = contratoData;
 
         const pessoa = await this.clienteRepository.filterCliente(idCliente);
-        if (!pessoa) {
+        if (pessoa.length == 0) {
             throw new Error("Cliente informado não existe.");
         }
-        /*
-        const evento = await this.eventoRepository.filterEvento(id);
-        if (!evento) {
+
+        const evento = await this.eventoRepository.filterEvento(idEvento);
+        if (evento.length == 0) {
             throw new Error("Evento informado não existe.");
-        } remover dps de criar o evento service e repository*/
+        }
 
         const contrato = new Contrato(undefined, idCliente, idEvento, nomeCliente, valorTotal)
 
@@ -33,18 +33,18 @@ export class ContratoService {
         const { id, idCliente, idEvento, nomeCliente, valorTotal } = contratoData;
 
         const idContrato = await this.contratoRepository.filterContrato(id);
-        if (!idContrato) {
+        if (idContrato.length == 0) {
             throw new Error("Contrato informado não existe.");
         }
         const pessoa = await this.clienteRepository.filterCliente(idCliente);
-        if (!pessoa) {
+        if (pessoa.length == 0) {
             throw new Error("Cliente informado não existe.");
         }
-        /*
-        const evento = await this.eventoRepository.filterEvento(id);
-        if (!evento) {
+
+        const evento = await this.eventoRepository.filterEvento(idEvento);
+        if (evento.length == 0) {
             throw new Error("Evento informado não existe.");
-        } remover dps de criar o evento service e repository*/
+        }
 
         const contrato = new Contrato(id, idCliente, idEvento, nomeCliente, valorTotal)
 
@@ -57,7 +57,7 @@ export class ContratoService {
         const { id, idCliente, idEvento, nomeCliente, valorTotal } = contratoData;
 
         const idContrato = await this.contratoRepository.filterContrato(id);
-        if (!idContrato) {
+        if (idContrato.length == 0) {
             throw new Error("Contrato informado não existe.");
         }
 
@@ -68,7 +68,7 @@ export class ContratoService {
         return contrato;
     }
 
-    async filtrarContrato(contratoData: any): Promise<Contrato> {
+    async filtrarContrato(contratoData: any): Promise<Contrato[]> {
         const idNumber = parseInt(contratoData, 10);
 
         const contrato = await this.contratoRepository.filterContrato(idNumber);

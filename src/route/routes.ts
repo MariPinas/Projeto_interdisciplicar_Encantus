@@ -51,7 +51,18 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "ContratoRequestsDto": {
+    "ContratoRequestDto": {
+        "dataType": "refObject",
+        "properties": {
+            "idCliente": {"dataType":"double","required":true},
+            "idEvento": {"dataType":"double","required":true},
+            "nomeCliente": {"dataType":"string","required":true},
+            "valorTotal": {"dataType":"double","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "ContratoDto": {
         "dataType": "refObject",
         "properties": {
             "id": {"dataType":"double","required":true},
@@ -302,7 +313,7 @@ export function RegisterRoutes(app: Router) {
 
             async function ContratoController_inserirContrato(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    dto: {"in":"body","name":"dto","required":true,"ref":"ContratoRequestsDto"},
+                    dto: {"in":"body","name":"dto","required":true,"ref":"ContratoRequestDto"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"201","required":true,"ref":"BasicResponseDto"},
             };
@@ -334,7 +345,7 @@ export function RegisterRoutes(app: Router) {
 
             async function ContratoController_atualizarContrato(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    dto: {"in":"body","name":"dto","required":true,"ref":"ContratoRequestsDto"},
+                    dto: {"in":"body","name":"dto","required":true,"ref":"ContratoDto"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"201","required":true,"ref":"BasicResponseDto"},
             };
@@ -366,7 +377,7 @@ export function RegisterRoutes(app: Router) {
 
             async function ContratoController_deletarContrato(request: ExRequest, response: ExResponse, next: any) {
             const args: Record<string, TsoaRoute.ParameterSchema> = {
-                    dto: {"in":"body","name":"dto","required":true,"ref":"ContratoRequestsDto"},
+                    dto: {"in":"body","name":"dto","required":true,"ref":"ContratoDto"},
                     fail: {"in":"res","name":"400","required":true,"ref":"BasicResponseDto"},
                     sucess: {"in":"res","name":"201","required":true,"ref":"BasicResponseDto"},
             };
