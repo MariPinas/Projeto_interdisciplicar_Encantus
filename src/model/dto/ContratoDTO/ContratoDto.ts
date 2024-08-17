@@ -1,4 +1,4 @@
-export class ContratoRequestsDto{
+export class ContratoDto{
     id: number;
     idCliente: number;
     idEvento: number;

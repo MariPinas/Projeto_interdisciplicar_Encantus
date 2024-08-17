@@ -1,7 +1,8 @@
 import { ContratoService } from "../service/ContratoService";
 import { Body, Controller, Post, Res, Route, Tags, TsoaResponse, Put, Delete, Get, Path } from "tsoa";
 import { BasicResponseDto } from "../model/dto/BasicResponseDto";
-import { ContratoRequestsDto } from "../model/dto/ContatoRequestsDto";
+import { ContratoRequestDto } from "../model/dto/ContratoDTO/ContatoRequestDto";
+import { ContratoDto } from "../model/dto/ContratoDTO/ContratoDto";
 
 @Route("contrato")
 @Tags("Contrato")
@@ -10,7 +11,7 @@ export class ContratoController extends Controller {
 
     @Post()
     async inserirContrato(
-        @Body() dto: ContratoRequestsDto,
+        @Body() dto: ContratoRequestDto,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<201, BasicResponseDto>
     ): Promise<void> {
@@ -24,7 +25,7 @@ export class ContratoController extends Controller {
 
     @Put()
     async atualizarContrato(
-        @Body() dto: ContratoRequestsDto,
+        @Body() dto: ContratoDto,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<201, BasicResponseDto>
     ): Promise<void> {
@@ -39,7 +40,7 @@ export class ContratoController extends Controller {
 
     @Delete()
     async deletarContrato(
-        @Body() dto: ContratoRequestsDto,
+        @Body() dto: ContratoDto,
         @Res() fail: TsoaResponse<400, BasicResponseDto>,
         @Res() sucess: TsoaResponse<201, BasicResponseDto>
     ): Promise<void> {
