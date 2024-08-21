@@ -26,7 +26,7 @@ export class ContratoRepository {
             nomeCliente VARCHAR(255) NOT NULL,
             valorTotal DECIMAL(8,2) NOT NULL,
             FOREIGN KEY (idCliente) REFERENCES Cliente(id),
-            FOREIGN KEY (idEvento) REFERENCES Evento(idEvento)
+            FOREIGN KEY (idEvento) REFERENCES Evento(id)
         )`;
 
         try {
