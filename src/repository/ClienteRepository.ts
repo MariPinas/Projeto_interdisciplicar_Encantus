@@ -54,7 +54,7 @@ export class ClienteRepository {
     }
 
     async updateCliente(cliente: Cliente): Promise<Cliente> {
-        const query = "UPDATE encantus.Cliente set nome = ?, email = ?, endereco = ?, telefone= ?, cpf = ? where id = ?;";
+        const query = "UPDATE encantus.Cliente set nome = ?, email = ?, rua = ?, numero = ?, cep = ?, telefone= ?, cpf = ? where id = ?;";
 
         try {
             const resultado = await executarComandoSQL(query, [cliente.nome, cliente.email, cliente.rua, cliente.numero, cliente.cep, cliente.telefone, cliente.cpf, cliente.id]);
