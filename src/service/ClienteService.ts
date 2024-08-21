@@ -7,7 +7,7 @@ export class ClienteService {
     private clienteRepository = ClienteRepository.getInstance();
 
     async cadastrarCliente(clienteData: any): Promise<Cliente> {
-        const { nome, email, endereco, telefone, cpf } = clienteData;
+        const { nome, email, rua, numero, cep, telefone, cpf } = clienteData;
 
 
         const clienteExistente = await this.clienteRepository.filterClientePorCpf(cpf);
@@ -15,7 +15,7 @@ export class ClienteService {
         if (clienteExistente.length > 0) {
             throw new Error("Já existe uma pessoa cadastrada com esse cpf.");
         }
-        const cliente = new Cliente(undefined, nome, email, endereco, telefone, cpf)
+        const cliente = new Cliente(undefined, nome, email, rua, numero, cep, telefone, cpf)
 
         const novoCliente = await this.clienteRepository.insertCliente(cliente);
         console.log("Service - Insert ", novoCliente);
@@ -23,14 +23,14 @@ export class ClienteService {
     }
 
     async atualizarCliente(clienteData: any): Promise<Cliente> {
-        const { id, nome, email, endereco, telefone, cpf } = clienteData;
+        const { id, nome, email, rua, numero, cep, telefone, cpf } = clienteData;
 
         const pessoa = await this.clienteRepository.filterCliente(id);
         if (pessoa.length == 0) {
             throw new Error("Cliente informado não existe.");
         }
 
-        const cliente = new Cliente(id, nome, email, endereco, telefone, cpf)
+        const cliente = new Cliente(id, nome, email, rua, numero, cep, telefone, cpf)
 
         await this.clienteRepository.updateCliente(cliente);
         console.log("Service - Update ", cliente);
@@ -38,9 +38,9 @@ export class ClienteService {
     }
 
     async deletarCliente(clienteData: any): Promise<Cliente> {
-        const { id, nome, email, endereco, telefone, cpf } = clienteData;
+        const { id, nome, email, rua, numero, cep, telefone, cpf } = clienteData;
 
-        const cliente = new Cliente(id, nome, email, endereco, telefone, cpf)
+        const cliente = new Cliente(id, nome, email, rua, numero, cep, telefone, cpf)
 
         const pessoa = await this.clienteRepository.filterCliente(id);
         if (pessoa.length == 0) {

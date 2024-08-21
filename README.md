@@ -18,3 +18,4 @@ atualizacao v1.5: ajustado erros de evento e adicionado dtos de cliente.
 atualizacao v1.6: ajustado erros em evento.
 atualizacao v1.7: adicionado dto de contrato e adicionado os diagramas C4 ateo nivel 3.
 atualizacao v1.8: atualizado service cliente e service contrato, adicionado fks para tabela contrato // cliente: removido endereco e adicionado rua cep numero
+atualizcao v1.9 atualizado cliente codes

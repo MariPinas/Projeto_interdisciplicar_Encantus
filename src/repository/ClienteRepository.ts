@@ -38,10 +38,10 @@ export class ClienteRepository {
     }
 
     async insertCliente(cliente: Cliente): Promise<Cliente> {
-        const query = "INSERT INTO encantus.Cliente (nome, email, endereco, telefone, cpf) VALUES (?, ?, ?, ?, ?)";
+        const query = "INSERT INTO encantus.Cliente (nome, email, rua, numero, cep, telefone, cpf) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try {
-            const resultado = await executarComandoSQL(query, [cliente.nome, cliente.email, cliente.endereco, cliente.telefone, cliente.cpf]);
+            const resultado = await executarComandoSQL(query, [cliente.nome, cliente.email, cliente.rua, cliente.numero, cliente.cep, cliente.telefone, cliente.cpf]);
             console.log('Cliente inserido com sucesso, ID: ', resultado.insertId);
             cliente.id = resultado.insertId;
             return new Promise<Cliente>((resolve) => {
@@ -57,7 +57,7 @@ export class ClienteRepository {
         const query = "UPDATE encantus.Cliente set nome = ?, email = ?, endereco = ?, telefone= ?, cpf = ? where id = ?;";
 
         try {
-            const resultado = await executarComandoSQL(query, [cliente.nome, cliente.email, cliente.endereco, cliente.telefone, cliente.cpf, cliente.id]);
+            const resultado = await executarComandoSQL(query, [cliente.nome, cliente.email, cliente.rua, cliente.numero, cliente.cep, cliente.telefone, cliente.cpf, cliente.id]);
             console.log('Cliente atualizado com sucesso, ID: ', resultado);
             return new Promise<Cliente>((resolve) => {
                 resolve(cliente);

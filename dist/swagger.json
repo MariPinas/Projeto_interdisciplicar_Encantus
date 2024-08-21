@@ -165,8 +165,16 @@
 					"email": {
 						"type": "string"
 					},
-					"endereco": {
+					"rua": {
 						"type": "string"
+					},
+					"numero": {
+						"type": "number",
+						"format": "double"
+					},
+					"cep": {
+						"type": "number",
+						"format": "double"
 					},
 					"telefone": {
 						"type": "string"
@@ -178,7 +186,9 @@
 				"required": [
 					"nome",
 					"email",
-					"endereco",
+					"rua",
+					"numero",
+					"cep",
 					"telefone",
 					"cpf"
 				],
@@ -197,8 +207,16 @@
 					"email": {
 						"type": "string"
 					},
-					"endereco": {
+					"rua": {
 						"type": "string"
+					},
+					"numero": {
+						"type": "number",
+						"format": "double"
+					},
+					"cep": {
+						"type": "number",
+						"format": "double"
 					},
 					"telefone": {
 						"type": "string"
@@ -211,7 +229,9 @@
 					"id",
 					"nome",
 					"email",
-					"endereco",
+					"rua",
+					"numero",
+					"cep",
 					"telefone",
 					"cpf"
 				],
